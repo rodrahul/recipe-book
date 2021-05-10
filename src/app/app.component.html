@@ -1,11 +1,10 @@
-<app-header (recipeOrShoppingListEvent)="onNavigate($event)"></app-header>
+<app-header></app-header>
 <br>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="navigateTo === 'recipe'"></app-recipes>
-      <app-shopping-list *ngIf="navigateTo != 'recipe'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
