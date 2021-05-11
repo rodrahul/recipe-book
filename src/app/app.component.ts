@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  navigateTo = 'recipe';
-
-  onNavigate(navigateTo: string): void {
-    this.navigateTo = navigateTo;
-  }
 }
