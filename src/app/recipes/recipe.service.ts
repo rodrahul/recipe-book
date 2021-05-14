@@ -4,10 +4,9 @@ import { Ingredient } from '../shared/ingredient.model';
 import { Recipe } from './recipe.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipeService {
-
   private recipes: Recipe[] = [
     new Recipe(
       'Ratatouille',
@@ -16,8 +15,9 @@ export class RecipeService {
       [
         new Ingredient('Zucchini', 2),
         new Ingredient('Eggplant', 3),
-        new Ingredient('Roma Tomatoes', 10)
-      ]),
+        new Ingredient('Roma Tomatoes', 10),
+      ]
+    ),
     new Recipe(
       'Pav Bhaji',
       'Pav bhaji is a fast food dish from India.',
@@ -26,11 +26,11 @@ export class RecipeService {
         new Ingredient('Potatoes', 3),
         new Ingredient('Carrot', 2),
         new Ingredient('Capsicum', 4),
-        new Ingredient('Tomatoes', 5)
-      ])
+        new Ingredient('Tomatoes', 5),
+      ]
+    ),
   ];
-
-  constructor() { }
+  recipesChanged = new Subject<Recipe[]>();
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();
@@ -40,4 +40,18 @@ export class RecipeService {
     return this.recipes[id];
   }
 
+  addRecipe(recipe: Recipe): void {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, updatedRecipe: Recipe): void {
+    this.recipes[index] = updatedRecipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(index: number): void {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  }
 }

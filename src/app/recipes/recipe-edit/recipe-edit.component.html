@@ -1,1 +1,143 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!recipeForm.valid"
+          >
+            Save
+          </button>
+          <button class="btn btn-danger" type="button" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                !recipeForm.get('name').valid && recipeForm.get('name').touched
+              "
+              >Enter a recipe name</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Path -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              type="text"
+              name="imagePath"
+              id="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+              #imagePath
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                !recipeForm.get('imagePath').valid &&
+                recipeForm.get('imagePath').touched
+              "
+              >Enter a URL with http</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Display Image -->
+      <div class="row">
+        <div class="col-xs-12">
+          <img
+            [src]="imagePath.value"
+            class="img-responsive"
+            width="200"
+            height="400"
+            *ngIf="imagePath.value"
+          />
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              class="form-control"
+              rows="6"
+              formControlName="description"
+            >
+            </textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredient Items -->
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <label for="ingredient">Ingredients</label>
+
+          <div
+            class="row"
+            *ngFor="let ingredient of getIngredientControl(); let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px"
+          >
+            <!-- Ingredient Name -->
+            <div class="col-xs-8">
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <!-- Ingredient Amount -->
+            <div class="col-xs-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="amount"
+              />
+            </div>
+            <!-- Ingredient Delete -->
+            <div class="col-xs-2">
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="removeIngredient(i)"
+              >
+                X
+              </button>
+            </div>
+          </div>
+          <hr />
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="addIngredient()"
+          >
+            Add Ingredient
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
