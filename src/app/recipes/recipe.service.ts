@@ -48,7 +48,7 @@ export class RecipeService {
 
   setRecipes(recipes: Recipe[]): void {
     this.recipes = recipes;
-    this.recipesChanged.next(this.recipes.slice());
+    this.recipesChanged.next(recipes.slice());
   }
 
   updateRecipe(index: number, updatedRecipe: Recipe): void {

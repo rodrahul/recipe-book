@@ -18,10 +18,12 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
     private recipeService: RecipeService
   ) {}
 
+  // To fetch recipes from firebase
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Recipe[] | Observable<Recipe[]> | Promise<Recipe[]> {
+    console.log('FETCHING RECIPES');
     const recipes = this.recipeService.getRecipes();
     if (recipes.length === 0) {
       return this.dataStore.fetchRecipes();
