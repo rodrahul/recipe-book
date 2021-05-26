@@ -20,7 +20,7 @@ const initialState: State = {
 export function shoppingListReducer(
   state: State = initialState,
   action: slActions.ShoppingListActions
-) {
+): State {
   switch (action.type) {
     case slActions.ADD_INGREDIENT:
       return {
@@ -46,7 +46,7 @@ export function shoppingListReducer(
         ...state,
         ingredients: updatedIngs,
         editedIngredientIndex: -1,
-        editedIngredien: null,
+        editedIngredient: null,
       };
 
     case slActions.DELETE_INGREDIENT:
@@ -56,7 +56,7 @@ export function shoppingListReducer(
           return igIndex !== state.editedIngredientIndex;
         }),
         editedIngredientIndex: -1,
-        editedIngredien: null,
+        editedIngredient: null,
       };
 
     case slActions.START_EDIT:
