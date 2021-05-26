@@ -6,4 +6,8 @@ export class Ingredient {
     this.name = name;
     this.amount = amount;
   }
+
+  toString(): string {
+    return this.name + ': ' + this.amount;
+  }
 }
