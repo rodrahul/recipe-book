@@ -11,7 +11,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -22,7 +22,7 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     AuthModule,
     SharedModule,
     // Tell ngRx what makes up our store, forRoot we are passing action reducer map
-    StoreModule.forRoot({ shoppingList: shoppingListReducer }),
+    StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
