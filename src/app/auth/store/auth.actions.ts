@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 export const login = createAction(
-  '[Auth Page] Login',
+  '[Auth] Login',
   props<{
     email: string;
     id: string;
@@ -10,4 +10,12 @@ export const login = createAction(
   }>()
 );
 
-export const logout = createAction('[Auth Page] Logout');
+export const loginStart = createAction(
+  '[Auth] Login Start',
+  props<{
+    email: string;
+    password: string;
+  }>()
+);
+
+export const logout = createAction('[Auth] Logout');
