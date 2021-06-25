@@ -71,7 +71,6 @@ export function shoppingListReducer(
 
     default:
       // For action action@ngrx/store/init
-      console.log('Default action' + action);
       return state;
   }
 }

@@ -12,6 +12,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/auth.effects';
 import { HeaderComponent } from './header/header.component';
+import { RecipeEffects } from './recipes/store/recipe.effects';
 import { SharedModule } from './shared/shared.module';
 import * as fromApp from './store/app.reducer';
 
@@ -25,7 +26,7 @@ import * as fromApp from './store/app.reducer';
     SharedModule,
     // Tell ngRx what makes up our store, forRoot we are passing action reducer map
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
